@@ -1,6 +1,0 @@
-version: "Swift version 5.6.1 (swift-5.6.1-RELEASE)"
-options: "bb4a94a12ff7ec22b2e1f1ade65daf121ef7715d8d60c7fdd4f1dc513cb662d4"
-build_start_time: [1662557975, 443325996]
-build_end_time: [1662557976, 587523937]
-inputs:
-  "/home/mason-graham/Digital Portfolio/CS-II/Projects/Optimal-Sorting/main.swift": [1662557972, 273394107]
