@@ -26,18 +26,12 @@ func bubbleSort(unsortedStrings: [String]) -> [String] {
     var strings = unsortedStrings
     var pass  = 0
     var swaps = 0
-    //var totalSwaps = 0
     var firstIndex = 0
     var secondIndex = 1
     var noSwapPass = false
 
     // Passes through the array until noSwapPass is true
     repeat {
-
-        // Prints details of the last pass or before the sorting starts
-        //print("Pass: \(pass), Swaps: \(swaps)/\(totalSwaps), Array: \(strings)")
-    
-
         // Starts a pass
         swaps = 0
         while secondIndex < strings.count {
@@ -46,7 +40,6 @@ func bubbleSort(unsortedStrings: [String]) -> [String] {
             if stringGreaterThan(string1: strings[firstIndex], string2: strings[secondIndex]) {
                 swap(strings:&strings, firstIndex:firstIndex, secondIndex:secondIndex)
                 swaps += 1
-                //totalSwaps += 1       
             }
             
             // Moves to check the next pair of strings
@@ -68,12 +61,10 @@ func bubbleSort(unsortedStrings: [String]) -> [String] {
     return strings
 }
 
-
 // Keeps appending the input to wordArray till a blank input is made
 repeat {
     word = readLine()!
     wordArray.append(word)
-    //index += 1
 } while word != ""
 // removes blank input
 wordArray.removeLast()
@@ -81,6 +72,7 @@ wordArray.removeLast()
 //bubblesorts the wordArray and assigns it to sortedWordArray
 sortedWordArray = bubbleSort(unsortedStrings: wordArray)
 
+//prints every word in the sortedWordArray on a new line
 for word in sortedWordArray {
     print(word)
     }
