@@ -3,11 +3,13 @@ var wordArray = [String]()
 let sortedWordArray : [String]
 var word : String
 
-
-
 //compares the ascii values in two strings to figure out if the first string is greater than the second string
 func stringGreaterThan(string1: String, string2: String) -> Bool {
-    return string1.lowercased() > string2.lowercased()
+    
+    //filters out anything that isn't a letter to sort only the letters
+    let s1 = string1.lowercased().filter("abcdefghijklmnopqrstuvwxyz".contains)
+    let s2 = string2.lowercased().filter("abcdefghijklmnopqrstuvwxyz".contains)
+    return s1.lowercased() > s2.lowercased()
 }
 
 // swaps two elements in an array
