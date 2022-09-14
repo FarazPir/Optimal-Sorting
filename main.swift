@@ -1,7 +1,25 @@
-//Defines wordArray, sortedWordArray, and word
-var wordArray = [String]()
-let sortedWordArray : [String]
+import Foundation
+
+//Defines wordArray, sortedWordArray, word, and input
+var wordArray : ArraySlice<Substring> = []
+//let sortedWordArray : [String]
 var word : String
+let textPath = "random.txt"
+
+
+do {
+    let contents = try NSString(contentsOfFile: textPath, encoding: String.Encoding.ascii.rawValue)
+    
+    let allWords = contents as String
+    let allWordsArray = allWords.split(separator: "\n")
+    wordArray = allWordsArray[..<20]
+    //print(wordArray)
+
+} catch {
+    print("contents couldn't be loaded")
+}
+
+
 
 //compares the ascii values in two strings to figure out if the first string is greater than the second string
 func stringGreaterThan(string1: String, string2: String) -> Bool {
@@ -61,6 +79,7 @@ func bubbleSort(unsortedStrings: [String]) -> [String] {
     return strings
 }
 
+/*
 // Keeps appending the input to wordArray till a blank input is made
 repeat {
     word = readLine()!
@@ -69,11 +88,14 @@ repeat {
 // removes blank input
 wordArray.removeLast()
 
-//bubblesorts the wordArray and assigns it to sortedWordArray
-sortedWordArray = bubbleSort(unsortedStrings: wordArray)
+ */
 
+//bubblesorts the wordArray and assigns it to sortedWordArray
+//sortedWordArray = bubbleSort(unsortedStrings: wordArray)
 //prints every word in the sortedWordArray on a new line
-for word in sortedWordArray {
+for word in wordArray {
     print(word)
     }
+    
+
 
