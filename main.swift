@@ -2,7 +2,7 @@ import Foundation
 
 //Defines wordArray, sortedWordArray, word, and input
 var wordArray : ArraySlice<Substring> = []
-//let sortedWordArray : [String]
+let sortedWordArray : ArraySlice<Substring>
 var word : String
 let textPath = "random.txt"
 
@@ -22,7 +22,7 @@ do {
 
 
 //compares the ascii values in two strings to figure out if the first string is greater than the second string
-func stringGreaterThan(string1: String, string2: String) -> Bool {
+func stringGreaterThan(string1: Substring, string2: Substring) -> Bool {
     
     //filters out anything that isn't a letter to sort only the letters
     let s1 = string1.lowercased().filter("abcdefghijklmnopqrstuvwxyz".contains)
@@ -31,14 +31,14 @@ func stringGreaterThan(string1: String, string2: String) -> Bool {
 }
 
 // swaps two elements in an array
-func swap(strings: inout [String], firstIndex: Int, secondIndex: Int) {
+func swap(strings: inout ArraySlice<Substring>, firstIndex: Int, secondIndex: Int) {
     let temp = strings[firstIndex]
     strings[firstIndex] = strings[secondIndex]
     strings[secondIndex] = temp
     
 }
 //Uses bubble sorting to sort array
-func bubbleSort(unsortedStrings: [String]) -> [String] {
+func bubbleSort(unsortedStrings: ArraySlice<Substring>) -> ArraySlice<Substring> {
 
     // Defining variables
     var strings = unsortedStrings
@@ -91,9 +91,9 @@ wordArray.removeLast()
  */
 
 //bubblesorts the wordArray and assigns it to sortedWordArray
-//sortedWordArray = bubbleSort(unsortedStrings: wordArray)
+sortedWordArray = bubbleSort(unsortedStrings: wordArray)
 //prints every word in the sortedWordArray on a new line
-for word in wordArray {
+for word in sortedWordArray {
     print(word)
     }
     
