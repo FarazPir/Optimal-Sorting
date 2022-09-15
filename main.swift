@@ -2,7 +2,7 @@ import Foundation
 
 //Defines wordArray, sortedWordArray, word, and input
 var wordArray : ArraySlice<Substring> = []
-//let sortedWordArray : [String]
+var sortedWordArray : ArraySlice<Substring> = []
 var word : String
 let textPath = "random.txt"
 
@@ -22,7 +22,7 @@ do {
 
 
 //compares the ascii values in two strings to figure out if the first string is greater than the second string
-func stringGreaterThan(string1: String, string2: String) -> Bool {
+func stringGreaterThan(string1: Substring, string2: Substring) -> Bool {
     
     //filters out anything that isn't a letter to sort only the letters
     let s1 = string1.lowercased().filter("abcdefghijklmnopqrstuvwxyz".contains)
@@ -31,69 +31,35 @@ func stringGreaterThan(string1: String, string2: String) -> Bool {
 }
 
 // swaps two elements in an array
-func swap(strings: inout [String], firstIndex: Int, secondIndex: Int) {
+func swap(strings: inout ArraySlice<Substring>, firstIndex: Int, secondIndex: Int) {
     let temp = strings[firstIndex]
     strings[firstIndex] = strings[secondIndex]
     strings[secondIndex] = temp
     
 }
 //Uses bubble sorting to sort array
-func bubbleSort(unsortedStrings: [String]) -> [String] {
+func insertionSort(strings: ArraySlice<Substring>) -> ArraySlice<Substring> {
 
     // Defining variables
-    var strings = unsortedStrings
-    var pass  = 0
+    var unsortedStrings = strings[1...]
+    var sortedStrings = strings[..<1]
     var swaps = 0
     var firstIndex = 0
     var secondIndex = 1
-    var noSwapPass = false
 
-    // Passes through the array until noSwapPass is true
-    repeat {
-        // Starts a pass
-        swaps = 0
-        while secondIndex < strings.count {
-
-            // Checks whether to swap or not, then swaps
-            if stringGreaterThan(string1: strings[firstIndex], string2: strings[secondIndex]) {
-                swap(strings:&strings, firstIndex:firstIndex, secondIndex:secondIndex)
-                swaps += 1
-            }
-            
-            // Moves to check the next pair of strings
-            firstIndex += 1
-            secondIndex += 1
+    while !unsortedStrings.isEmpty  {
+        if stringGreaterThan(string1: oldArra[firstIndex], string2: oldArray[secondIndex]) {
+            swap(strings:&strings, firstIndex:firstIndex, secondIndex:secondIndex)
         }
-
-        // Finishes pass and resets index
-        pass += 1
-        firstIndex = 0
-        secondIndex = 1
-  
-        // Sets noSwapPass to true if the pass had no swaps
-        if swaps == 0 {
-            noSwapPass = true
-        }
-        
-    } while !noSwapPass
-    return strings
+    
+    return sortedStrings
 }
 
-/*
-// Keeps appending the input to wordArray till a blank input is made
-repeat {
-    word = readLine()!
-    wordArray.append(word)
-} while word != ""
-// removes blank input
-wordArray.removeLast()
 
- */
-
-//bubblesorts the wordArray and assigns it to sortedWordArray
-//sortedWordArray = bubbleSort(unsortedStrings: wordArray)
+//insertionsorts the wordArray and assigns it to sortedWordArray
+sortedWordArray = insertionSort(unsortedStrings: wordArray)
 //prints every word in the sortedWordArray on a new line
-for word in wordArray {
+for sortedWordArray in wordArray {
     print(word)
     }
     
