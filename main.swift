@@ -40,22 +40,34 @@ func swap(strings: inout ArraySlice<Substring>, firstIndex: Int, secondIndex: In
 //Uses bubble sorting to sort array
 func insertionSort(strings: ArraySlice<Substring>) -> ArraySlice<Substring> {
 
-    // Defining variables
+    var stringArray = strings
+    for index in 1..<stringArray.count {
+        var marker = index
+            while marker > 0 && stringGreaterThan(string1: stringArray[marker-1], string2: stringArray[marker]) {
+                swap(strings:&stringArray, firstIndex:marker - 1, secondIndex:marker)
+                marker -= 1
+        }
+    }
+    
+    return stringArray
+}
 
+
+/*
+ 
     var marker = 1
     var stringArray = strings
     var unsortedStrings = strings[marker...]
     var sortedStrings = strings[..<marker]
     var swaps = 0
     var firstIndex = 0
-    var secondIndex = 1
-    
+    var secondIndex = 1    
 
     //print("funcition hapenigngn")
     while !unsortedStrings.isEmpty  {
         firstIndex = 0
         secondIndex = 1
-        //print("loop 1 happpend")
+        
         while firstIndex >= 0 {
             print("loop 2 happpend")
         if stringGreaterThan(string1: stringArray[firstIndex], string2: stringArray[secondIndex]) {
@@ -75,6 +87,7 @@ func insertionSort(strings: ArraySlice<Substring>) -> ArraySlice<Substring> {
     
     return sortedStrings
     }
+ */
 
 
 
