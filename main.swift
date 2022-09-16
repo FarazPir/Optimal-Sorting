@@ -41,27 +41,52 @@ func swap(strings: inout ArraySlice<Substring>, firstIndex: Int, secondIndex: In
 func insertionSort(strings: ArraySlice<Substring>) -> ArraySlice<Substring> {
 
     // Defining variables
-    var unsortedStrings = strings[1...]
-    var sortedStrings = strings[..<1]
+
+    var marker = 1
+    var stringArray = strings
+    var unsortedStrings = strings[marker...]
+    var sortedStrings = strings[..<marker]
     var swaps = 0
     var firstIndex = 0
     var secondIndex = 1
+    
 
+    //print("funcition hapenigngn")
     while !unsortedStrings.isEmpty  {
-        if stringGreaterThan(string1: oldArra[firstIndex], string2: oldArray[secondIndex]) {
-            swap(strings:&strings, firstIndex:firstIndex, secondIndex:secondIndex)
+        firstIndex = 0
+        secondIndex = 1
+        //print("loop 1 happpend")
+        while firstIndex >= 0 {
+            print("loop 2 happpend")
+        if stringGreaterThan(string1: stringArray[firstIndex], string2: stringArray[secondIndex]) {
+            swap(strings:&stringArray, firstIndex:firstIndex, secondIndex:secondIndex)
+            print("it swapped")
+            secondIndex = firstIndex
         }
+
+        firstIndex -= 1
+
+        }
+        
+        marker += 1
+        unsortedStrings = stringArray[marker...]
+        sortedStrings = stringArray[..<marker]
+    }
     
     return sortedStrings
-}
+    }
+
 
 
 //insertionsorts the wordArray and assigns it to sortedWordArray
-sortedWordArray = insertionSort(unsortedStrings: wordArray)
+sortedWordArray = insertionSort(strings: wordArray)
 //prints every word in the sortedWordArray on a new line
-for sortedWordArray in wordArray {
+
+for word in sortedWordArray {
     print(word)
     }
+    
+ 
     
 
 
