@@ -61,7 +61,7 @@ func bubbleSort(unsortedStrings: [String]) -> [String] {
     return strings
 }
 
-// Keeps appending the input to wordArray till readLine() returns nil
+//checks if word is nil, breaks loop if its blank, appends if it isn't
 while let word = readLine() {
     if word == "" {
      break
