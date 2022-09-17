@@ -61,13 +61,16 @@ func bubbleSort(unsortedStrings: [String]) -> [String] {
     return strings
 }
 
-// Keeps appending the input to wordArray till a blank input is made
-repeat {
-    word = readLine()!
+// Keeps appending the input to wordArray till readLine() returns nil
+while let word = readLine() {
+    if word == "" {
+     break
+    } else {
     wordArray.append(word)
-} while word != ""
-// removes blank input
-wordArray.removeLast()
+    }
+}
+   
+
 
 //bubblesorts the wordArray and assigns it to sortedWordArray
 sortedWordArray = bubbleSort(unsortedStrings: wordArray)
