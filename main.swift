@@ -1,27 +1,9 @@
 import Foundation
 
 //Defines wordArray, sortedWordArray, word, and input
-var wordArray : [String] = []
-var sortedWordArray : [String] = []
-var word : String
-let textPath = "random.txt"
-
-
-do {
-    let contents = try NSString(contentsOfFile: textPath, encoding: String.Encoding.ascii.rawValue)
-    var count = 20
-    contents.enumerateLines({ (line,stop) -> () in
-                                if count > 0 {
-                                    wordArray.append(line)
-                                    count -= 1
-                                }
-                            })
-}  catch {
-    print("contents couldn't be loaded")
-}
-    
-
-
+var wordArray = [String]()
+var sortedWordArray : [String]
+var word : String    
 
 //compares the ascii values in two strings to figure out if the first string is greater than the second string
 func stringGreaterThan(string1: String, string2: String) -> Bool {
@@ -54,6 +36,14 @@ func insertionSort(strings: [String]) -> [String] {
     return stringArray
 }
 
+//checks if word is nil, breaks loop if its blank, appends if it isn't 
+while let word = readLine() {
+    if word == "" {
+     break
+    } else {
+    wordArray.append(word)
+    }
+}
 
 
 
