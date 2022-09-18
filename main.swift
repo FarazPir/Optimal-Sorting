@@ -1,28 +1,22 @@
 import Foundation
 
 //Defines wordArray, sortedWordArray, word, and input
-var wordArray : ArraySlice<Substring> = []
-var sortedWordArray : ArraySlice<Substring> = []
+var wordArray : [String] = []
+var sortedWordArray : [String] = []
 var word : String
 let textPath = "random.txt"
 
 
-do {
-    let contents = try NSString(contentsOfFile: textPath, encoding: String.Encoding.ascii.rawValue)
-    
-    let allWords = contents as String
-    let allWordsArray = allWords.split(separator: "\n")
-    wordArray = allWordsArray[..<20]
-    //print(wordArray)
+var line = readLine()
+while line != nil && line != "" && line != " " {
+    wordArray.append(line!)
 
-} catch {
-    print("contents couldn't be loaded")
+    line = readLine()
 }
 
 
-
 //compares the ascii values in two strings to figure out if the first string is greater than the second string
-func stringGreaterThan(string1: Substring, string2: Substring) -> Bool {
+func stringGreaterThan(string1: String, string2: String) -> Bool {
     
     //filters out anything that isn't a letter to sort only the letters
     let s1 = string1.lowercased().filter("abcdefghijklmnopqrstuvwxyz".contains)
@@ -31,75 +25,41 @@ func stringGreaterThan(string1: Substring, string2: Substring) -> Bool {
 }
 
 // swaps two elements in an array
-func swap(strings: inout ArraySlice<Substring>, firstIndex: Int, secondIndex: Int) {
+func swap(strings: inout [String], firstIndex: Int, secondIndex: Int) {
     let temp = strings[firstIndex]
     strings[firstIndex] = strings[secondIndex]
     strings[secondIndex] = temp
     
 }
-//Uses bubble sorting to sort array
-func insertionSort(strings: ArraySlice<Substring>) -> ArraySlice<Substring> {
 
-    var stringArray = strings
-    for index in 1..<stringArray.count {
-        var marker = index
-            while marker > 0 && stringGreaterThan(string1: stringArray[marker-1], string2: stringArray[marker]) {
-                swap(strings:&stringArray, firstIndex:marker - 1, secondIndex:marker)
-                marker -= 1
+ func sort(strings: [String]) -> [String] {
+
+    var stringArray = strings    
+            
+    for i in 0 ..< stringArray.count{
+        var marker = i
+        var marker2 = i + 1
+        while marker2 < stringArray.count {
+         if stringGreaterThan(string1: stringArray[marker], string2: stringArray[marker2]) {
+             marker = marker2
+        } else if !stringGreaterThan(string1: stringArray[marker], string2: stringArray[marker2]) {
+            marker2 += 1
         }
+            
+        }
+        swap(strings:&stringArray, firstIndex:i, secondIndex:marker)
     }
-    
+     
     return stringArray
 }
 
 
-/*
- 
-    var marker = 1
-    var stringArray = strings
-    var unsortedStrings = strings[marker...]
-    var sortedStrings = strings[..<marker]
-    var swaps = 0
-    var firstIndex = 0
-    var secondIndex = 1    
-
-    //print("funcition hapenigngn")
-    while !unsortedStrings.isEmpty  {
-        firstIndex = 0
-        secondIndex = 1
-        
-        while firstIndex >= 0 {
-            print("loop 2 happpend")
-        if stringGreaterThan(string1: stringArray[firstIndex], string2: stringArray[secondIndex]) {
-            swap(strings:&stringArray, firstIndex:firstIndex, secondIndex:secondIndex)
-            print("it swapped")
-            secondIndex = firstIndex
-        }
-
-        firstIndex -= 1
-
-        }
-        
-        marker += 1
-        unsortedStrings = stringArray[marker...]
-        sortedStrings = stringArray[..<marker]
-    }
-    
-    return sortedStrings
-    }
- */
-
 
 
 //insertionsorts the wordArray and assigns it to sortedWordArray
-sortedWordArray = insertionSort(strings: wordArray)
+sortedWordArray = sort(strings: wordArray)
 //prints every word in the sortedWordArray on a new line
 
 for word in sortedWordArray {
     print(word)
     }
-    
- 
-    
-
-
